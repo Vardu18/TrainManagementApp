@@ -457,9 +457,8 @@ class UseCase14TrainConsistMgmt {
 
         System.out.println("\nValid Bogies in Train:");
         for (PassengerBogie b : bogies) {
-            System.out.println(b.name + " -> " + b.capacity);
+            System.out.println(b.name+ " -> " + b.capacity);
         }
-
         System.out.println("\nUC14 operations completed successfully...");
     }
 }
