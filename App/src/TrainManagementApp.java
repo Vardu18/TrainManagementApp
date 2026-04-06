@@ -369,3 +369,52 @@ class UseCase12TrainConsistMgmt {
         System.out.println("\nUC12 operations completed successfully...");
     }
 }
+class UseCase13Peformance {
+
+    static class Bogie {
+        String name;
+        int capacity;
+
+        Bogie(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println(" UC13 - Performance Comparison ");
+        System.out.println("========================================\n");
+
+        List<Bogie> bogies = new ArrayList<>();
+
+        for (int i = 0; i < 100000; i++) {
+            bogies.add(new Bogie("Sleeper", 70 + (i % 50)));
+        }
+
+        long startLoop = System.nanoTime();
+
+        List<Bogie> loopResult = new ArrayList<>();
+        for (Bogie b : bogies) {
+            if (b.capacity > 90) {
+                loopResult.add(b);
+            }
+        }
+
+        long endLoop = System.nanoTime();
+
+        long startStream = System.nanoTime();
+
+        List<Bogie> streamResult = bogies.stream()
+                .filter(b -> b.capacity > 90)
+                .collect(Collectors.toList());
+
+        long endStream = System.nanoTime();
+
+        System.out.println("Loop Execution Time (ns): " + (endLoop - startLoop));
+        System.out.println("Stream Execution Time (ns): " + (endStream - startStream));
+
+        System.out.println("\nUC13 performance comparison completed...");
+    }
+}
