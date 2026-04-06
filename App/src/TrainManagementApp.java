@@ -418,3 +418,48 @@ class UseCase13Peformance {
         System.out.println("\nUC13 performance comparison completed...");
     }
 }
+class InvalidCapacityException extends Exception {
+    public InvalidCapacityException(String message) {
+        super(message);
+    }
+}
+
+class UseCase14TrainConsistMgmt {
+
+    static class PassengerBogie {
+        String name;
+        int capacity;
+
+        PassengerBogie(String name, int capacity) throws InvalidCapacityException {
+            if (capacity <= 0) {
+                throw new InvalidCapacityException("Invalid capacity for bogie: " + name);
+            }
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println(" UC14 - Handle Invalid Bogie Capacity ");
+        System.out.println("========================================\n");
+
+        List<PassengerBogie> bogies = new ArrayList<>();
+
+        try {
+            bogies.add(new PassengerBogie("Sleeper", 72));
+            bogies.add(new PassengerBogie("AC Chair", 0));
+            bogies.add(new PassengerBogie("First Class", 24));
+        } catch (InvalidCapacityException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        System.out.println("\nValid Bogies in Train:");
+        for (PassengerBogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
+
+        System.out.println("\nUC14 operations completed successfully...");
+    }
+}
