@@ -542,3 +542,23 @@ class UseCase16TrainConsistMgmt {
         System.out.println("\n\nUC16 operations completed successfully...");
     }
 }
+class UseCase17TrainConsistMgmt {
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println(" UC17 - Sort Bogie Names using Arrays.sort() ");
+        System.out.println("========================================\n");
+
+        String[] bogieNames = {"Sleeper", "AC Chair", "First Class", "General", "Cargo"};
+
+        System.out.println("Before Sorting:");
+        System.out.println(Arrays.toString(bogieNames));
+
+        Arrays.sort(bogieNames);
+
+        System.out.println("\nAfter Sorting:");
+        System.out.println(Arrays.toString(bogieNames));
+
+        System.out.println("\nUC17 operations completed successfully...");
+    }
+}
