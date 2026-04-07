@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TrainManagementApp {
     public static void main(String[] args) {
@@ -504,5 +505,40 @@ class UseCase15{
         }
 
         System.out.println("\nUC15 operations completed successfully...");
+    }
+}
+class UseCase16TrainConsistMgmt {
+
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println(" UC16 - Bubble Sort Passenger Capacities ");
+        System.out.println("========================================\n");
+
+        int[] capacities = {72, 56, 24, 90, 56};
+
+        System.out.println("Before Sorting:");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+
+        int n = capacities.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (capacities[j] > capacities[j + 1]) {
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
+
+        System.out.println("\n\nAfter Sorting:");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+
+        System.out.println("\n\nUC16 operations completed successfully...");
     }
 }
