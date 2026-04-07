@@ -634,3 +634,39 @@ class UseCase19TrainConsistMgmt {
         System.out.println("\nUC19 operations completed successfully...");
     }
 }
+
+class UseCase20TrainConsistMgmt {
+
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println(" UC20 - Exception Handling During Search ");
+        System.out.println("========================================\n");
+
+        List<String> bogieIds = new ArrayList<>();
+        String searchKey = "BG101";
+
+        try {
+            if (bogieIds.isEmpty()) {
+                throw new IllegalStateException("Cannot perform search: No bogies in train consist");
+            }
+
+            boolean found = false;
+
+            for (String id : bogieIds) {
+                if (id.equals(searchKey)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            System.out.println("Searching for Bogie ID: " + searchKey);
+            System.out.println(found ? "Bogie found" : "Bogie not found");
+
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        System.out.println("\nUC20 operations completed successfully...");
+    }
+}
