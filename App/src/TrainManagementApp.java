@@ -10,9 +10,8 @@ public class TrainManagementApp {
         System.out.println("=== Train Consist Management App ===");
         System.out.println("========================================\n");
 
-        List<String> trainConsist = new ArrayList<>();
-
         System.out.println("Train initialized successfully...");
+        List<String> trainConsist = new ArrayList<>();
         System.out.println("Initial Bogie Count : " + trainConsist.size());
         System.out.println("Current Train Consist : " + trainConsist);
         System.out.println("\nSystem ready for operations...");
@@ -77,7 +76,7 @@ class UseCase4{
         System.out.println(" UC4 - Maintain Ordered Bogie Consist ");
         System.out.println("========================================\n");
 
-        List<String> trainConsist = new LinkedList<>();
+        LinkedList<String> trainConsist = new LinkedList<>();
 
         trainConsist.add("Engine");
         trainConsist.add("Sleeper");
@@ -93,8 +92,8 @@ class UseCase4{
         System.out.println("\nAfter Inserting Pantry at position 2:");
         System.out.println(trainConsist);
 
-        ((LinkedList<String>) trainConsist).removeFirst();
-        ((LinkedList<String>) trainConsist).removeLast();
+        trainConsist.removeFirst();
+        trainConsist.removeLast();
 
         System.out.println("\nAfter Removing First and Last Bogie:");
         System.out.println(trainConsist);
@@ -115,10 +114,10 @@ class UseCase5{
         Set<String> formation = new LinkedHashSet<>();
 
         formation.add("Engine");
-        formation.add("Sleeper");
+        var sleeper = formation.add("Sleeper");
         formation.add("Cargo");
         formation.add("Guard");
-        formation.add("Sleeper");
+        var sleeper1 = sleeper;
 
         System.out.println("Final Train Formation:");
         System.out.println(formation);
@@ -215,7 +214,7 @@ class UseCase8 {
 
         List<Bogie> filtered = bogies.stream()
                 .filter(b -> b.capacity > 60)
-                .collect(Collectors.toList());
+                .toList();
 
         System.out.println("Filtered Bogies (capacity > 60):");
         for (Bogie b : filtered) {
@@ -592,5 +591,46 @@ class UseCase18TrainConsistMgmt {
         }
 
         System.out.println("\nUC18 operations completed successfully...");
+    }
+}
+class UseCase19TrainConsistMgmt {
+
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println(" UC19 - Binary Search for Bogie ID ");
+        System.out.println("========================================\n");
+
+        String[] bogieIds = {"BG101", "BG150", "BG205", "BG309", "BG412", "BG550"};
+        String key = "BG309";
+
+        int low = 0;
+        int high = bogieIds.length - 1;
+        boolean found = false;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            int cmp = bogieIds[mid].compareTo(key);
+
+            if (cmp == 0) {
+                found = true;
+                break;
+            } else if (cmp < 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        System.out.println("Searching for Bogie ID: " + key);
+
+        if (found) {
+            System.out.println("Bogie found in train consist");
+        } else {
+            System.out.println("Bogie not found");
+        }
+
+        System.out.println("\nUC19 operations completed successfully...");
     }
 }
