@@ -67,7 +67,7 @@ class TrainConsistApp2 {
         System.out.println("\nUC3 operations completed successfully...");
     }
 }
-class UseCase4TrainConsistMgmt {
+class UseCase4{
     public static void main(String[] args) {
 
         System.out.println("========================================");
@@ -102,7 +102,7 @@ class UseCase4TrainConsistMgmt {
         System.out.println("\nUC4 operations completed successfully...");
     }
 }
-class UseCase5TrainConsistMgmt {
+class UseCase5{
     public static void main(String[] args) {
 
         System.out.println("========================================");
@@ -123,7 +123,7 @@ class UseCase5TrainConsistMgmt {
         System.out.println("\nUC5 operations completed successfully...");
     }
 }
-class UseCase6TrainConsistMgmt {
+class UseCase6{
     public static void main(String[] args) {
 
         System.out.println("========================================");
@@ -145,7 +145,7 @@ class UseCase6TrainConsistMgmt {
         System.out.println("\nUC6 operations completed successfully...");
     }
 }
-class UseCase7TrainConsistMgmt {
+class UseCase7 {
 
     static class Bogie {
         String name;
@@ -185,7 +185,7 @@ class UseCase7TrainConsistMgmt {
         System.out.println("\nUC7 sorting completed...");
     }
 }
-class UseCase8TrainConsistMgmt {
+class UseCase8 {
 
     static class Bogie {
         String name;
@@ -222,7 +222,7 @@ class UseCase8TrainConsistMgmt {
         System.out.println("\nUC8 operations completed successfully...");
     }
 }
-class UseCase9TrainConsistMgmt {
+class UseCase9{
 
     static class Bogie {
         String name;
@@ -262,7 +262,7 @@ class UseCase9TrainConsistMgmt {
         System.out.println("\nUC9 operations completed successfully...");
     }
 }
-class UseCase10TrainConsistMgmt {
+class UseCase10 {
 
     static class Bogie {
         String name;
@@ -297,7 +297,7 @@ class UseCase10TrainConsistMgmt {
         System.out.println("\nUC10 operations completed successfully...");
     }
 }
-class UseCase11TrainConsistMgmt {
+class UseCase11{
     public static void main(String[] args) {
 
         System.out.println("========================================");
@@ -330,7 +330,7 @@ class UseCase11TrainConsistMgmt {
         System.out.println("\nUC11 operations completed successfully...");
     }
 }
-class UseCase12TrainConsistMgmt {
+class UseCase12{
 
     static class GoodsBogie {
         String type;
@@ -424,7 +424,7 @@ class InvalidCapacityException extends Exception {
     }
 }
 
-class UseCase14TrainConsistMgmt {
+class UseCase14 {
 
     static class PassengerBogie {
         String name;
@@ -460,5 +460,49 @@ class UseCase14TrainConsistMgmt {
             System.out.println(b.name+ " -> " + b.capacity);
         }
         System.out.println("\nUC14 operations completed successfully...");
+    }
+}
+class CargoSafetyException extends RuntimeException {
+    public CargoSafetyException(String message) {
+        super(message);
+    }
+}
+
+class UseCase15{
+
+    static class GoodsBogie {
+        String type;
+        String cargo;
+
+        GoodsBogie(String type) {
+            this.type = type;
+        }
+
+        void assignCargo(String cargo) {
+            if (type.equals("Rectangular") && cargo.equals("Petroleum")) {
+                throw new CargoSafetyException("Unsafe cargo assignment: Petroleum cannot be loaded in Rectangular bogie");
+            }
+            this.cargo = cargo;
+            System.out.println("Cargo assigned successfully: " + type + " -> " + cargo);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println(" UC15 - Safe Cargo Assignment ");
+        System.out.println("========================================\n");
+
+        GoodsBogie bogie = new GoodsBogie("Rectangular");
+
+        try {
+            bogie.assignCargo("Petroleum");
+        } catch (CargoSafetyException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            System.out.println("Operation completed. Logging and cleanup done.");
+        }
+
+        System.out.println("\nUC15 operations completed successfully...");
     }
 }
