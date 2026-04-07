@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class TrainManagementApp {
@@ -322,10 +324,9 @@ class UseCase11{
         }
 
         System.out.println("\nCargo Code: " + cargoCode);
-        if (cargoMatcher.matches()) {
+        if (!cargoMatcher.matches()) System.out.println("Invalid Cargo Code");
+        else {
             System.out.println("Valid Cargo Code");
-        } else {
-            System.out.println("Invalid Cargo Code");
         }
 
         System.out.println("\nUC11 operations completed successfully...");
@@ -560,5 +561,36 @@ class UseCase17TrainConsistMgmt {
         System.out.println(Arrays.toString(bogieNames));
 
         System.out.println("\nUC17 operations completed successfully...");
+    }
+}
+class UseCase18TrainConsistMgmt {
+
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println(" UC18 - Linear Search for Bogie ID ");
+        System.out.println("========================================\n");
+
+        String[] bogieIds = {"BG101", "BG205", "BG150", "BG320", "BG410"};
+        String searchKey = "BG150";
+
+        boolean found = false;
+
+        for (int i = 0; i < bogieIds.length; i++) {
+            if (bogieIds[i].equals(searchKey)) {
+                found = true;
+                break;
+            }
+        }
+
+        System.out.println("Searching for Bogie ID: " + searchKey);
+
+        if (found) {
+            System.out.println("Bogie found in train consist");
+        } else {
+            System.out.println("Bogie not found");
+        }
+
+        System.out.println("\nUC18 operations completed successfully...");
     }
 }
